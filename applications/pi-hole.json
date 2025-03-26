@@ -1,9 +1,67 @@
 {
+    "__inputs": [
+      {
+        "name": "DS_PROMETHEUS",
+        "label": "prometheus",
+        "description": "",
+        "type": "datasource",
+        "pluginId": "prometheus",
+        "pluginName": "Prometheus"
+      }
+    ],
+    "__elements": {},
+    "__requires": [
+      {
+        "type": "panel",
+        "id": "gauge",
+        "name": "Gauge",
+        "version": ""
+      },
+      {
+        "type": "grafana",
+        "id": "grafana",
+        "name": "Grafana",
+        "version": "11.6.0"
+      },
+      {
+        "type": "panel",
+        "id": "piechart",
+        "name": "Pie chart",
+        "version": ""
+      },
+      {
+        "type": "datasource",
+        "id": "prometheus",
+        "name": "Prometheus",
+        "version": "1.0.0"
+      },
+      {
+        "type": "panel",
+        "id": "stat",
+        "name": "Stat",
+        "version": ""
+      },
+      {
+        "type": "panel",
+        "id": "table",
+        "name": "Table",
+        "version": ""
+      },
+      {
+        "type": "panel",
+        "id": "timeseries",
+        "name": "Time series",
+        "version": ""
+      }
+    ],
     "annotations": {
       "list": [
         {
           "builtIn": 1,
-          "datasource": "de9q2fmbj241sc",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
@@ -17,7 +75,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 45,
+    "id": null,
     "links": [],
     "panels": [
       {
@@ -1263,7 +1321,6 @@
         "type": "table"
       }
     ],
-    "preload": false,
     "refresh": "auto",
     "schemaVersion": 41,
     "tags": [
@@ -1272,10 +1329,7 @@
     "templating": {
       "list": [
         {
-          "current": {
-            "text": "prometheus",
-            "value": "de9q2fmbj241sc"
-          },
+          "current": {},
           "hide": 2,
           "label": "Datasource",
           "name": "DS_PROMETHEUS",
@@ -1286,39 +1340,41 @@
           "type": "datasource"
         },
         {
-          "current": {
-            "text": "HS4RPi",
-            "value": "HS4RPi"
-          },
+          "current": {},
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "definition": "",
+          "definition": "label_values(pihole_status,monitor)",
           "includeAll": false,
           "label": "Monitor",
           "name": "monitor",
           "options": [],
-          "query": "",
+          "query": {
+            "qryType": 1,
+            "query": "label_values(pihole_status,monitor)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
           "refresh": 1,
           "regex": "",
           "type": "query"
         },
         {
-          "current": {
-            "text": "127.0.0.1",
-            "value": "127.0.0.1"
-          },
+          "current": {},
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "definition": "",
+          "definition": "label_values(pihole_status{monitor=\"$monitor\"},hostname)",
           "includeAll": false,
           "label": "Node",
           "name": "node",
           "options": [],
-          "query": "",
+          "query": {
+            "qryType": 1,
+            "query": "label_values(pihole_status{monitor=\"$monitor\"},hostname)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
           "refresh": 1,
           "regex": "",
           "type": "query"
@@ -1326,14 +1382,15 @@
       ]
     },
     "time": {
-      "from": "now-30m",
+      "from": "now-6h",
       "to": "now"
     },
     "timepicker": {
       "nowDelay": ""
     },
-    "timezone": "",
+    "timezone": "America/Los_Angeles",
     "title": "Pi-hole",
     "uid": "Pi-hole-Exporter",
-    "version": 6
+    "version": 8,
+    "weekStart": ""
   }
