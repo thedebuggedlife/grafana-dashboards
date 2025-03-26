@@ -6,3 +6,4 @@ Collection of sample grafana dashboards to use along with the Guides and Tutoria
 
 - [System](system/): Dashboards to monitor system resources (CPU, Memory, Disk, etc.)
 - [Databases](/databases/): Dashboards to monitor database roles (postgres, mysql, etc.)
+- [Applications](/applications/): Dashboards to monitor self-hosted applications (authelia, traefik, pi-hole, etc.)
